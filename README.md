@@ -1,12 +1,21 @@
 # Prosthetic-Control-EMG-Gesture-Classification
-This repository provides code and data for decoding EMG signals to control a prosthetic arm. It includes EMG datasets from two participants, hardware/software specs, 3D-printable STL files, and a cost breakdown sheet, offering a complete resource for replication and further research.
+This repository provides code and some sample EMG data for decoding EMG signals to control a prosthetic arm. It also includes other details  offering a complete resource for replication and further research,
+    - STL files for 3D modeling
+    - Settings used for 3D printing
+    - Scripts used to upload code to Arduino
+    - The experimental protocol timeline used within every session to move between gestures,
 
-The first code snippet for the Jupyter Notebook(multitrail_explorationrmsandpowernormalization.ipynb) is the feature processing for this code. 
+The main modeling code resides in the notebooks directory, specifically the notebook **feature_extraction_pytorch_training_and_validation.ipynb** takes care of feature generation, model training as well as validation. It can be divided broadly into three sections,
+    - *Feature Generation*: The first section handles feature generation.
+    - *Data Loading, Alignment and Visualization*: The second section loads the EMG data and plots it alongside the experimental protocol timeline, showing the alignment of gesture activity points with the protocol described in the paper. It also compares alignment across different sessions for each subject.A list of three values is provided, representing the approximate time points where each recording session began:
+        - Subject 1: Session 1 → 2.0s, Session 2 → 3.5s, Session 3 → 1.75s
+        - Subject 2: Session 1 → 8.55s, Session 2 → 8.3s, Session 3 → 3.4s
 
-The second is loading our data with a timeline file that automatically creates a graph  showing the alignment of the gesture activity points with our experimental protocol as described in the paper and its alignment compared to other sessions's alignment for this subject. There is a list with 3 numbers, representing the approximate time point where your recording protocol started. For Subject 1's data the approximate start points we've used for sessions 1, 2, 3, were 2.0(s), 3.5(s), 1.75(s) respectively.  For Subject 2's data the approximate start points we've used for sessions 1, 2, 3, were 8.55(s), 8.3(s), 3.4(s) respectively.
+    - *PyTorch Model Training and Validation*: At the bottom of the code are two MLP implementations:
+        - 6-Fold Stratified Cross-Validation (CV): Randomly splits all loaded sessions into 80% training and 20% testing. For example, if three sessions are loaded for both subjects, the dataset is split randomly into 80%/20%. If only one subject’s three sessions are loaded, the same 80%/20% random split applies.
+        - Cross-Session Evaluation (5-Fold Stratified CV): Trains on the first two sessions and tests on the third. This code also includes an option to save the predicted results as a CSV file, which can be used by the prosthetic deployment code to replay the predicted session.
 
-Towards the bottom of the code is the 2 MLP code snippets, the first code snippet will be the 6-Fold Stratified CV that splits the dataset randomly into 80% training and 20% for all sessions listed. This means that if you were to load 3 sessions from both subjects and give their respective protocol start times you can run this code on that dataset and it would split the data randomly into the 80% and 20% datasets, or instead if were to load 3 sessions from one subject it will take 80% randomly and test on 20% as well. Now for the second code, this is the cross session MLP evaluation using 5 k fold stratification which trains on the first 2 sessions you loaded and tests on the 3rd session. For this code there is also the option to save the predicted results to a CSV file. This is important for giving these predicted results to our prosthetic deployment code to replay the predicted session.
-
+The cost breakdown and specs are detailed in this document,
 This is the link to the parts list for the Prosthetic Arm:https://docs.google.com/spreadsheets/d/1ARazL39SHxkO9HCzjxf5s1OOEaxhFiI-FpY4icmBl84/edit?usp=sharing
 
 
