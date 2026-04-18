@@ -1,10 +1,10 @@
-# Prosthetic-Control-EMG-Gesture-Classification
+ Prosthetic-Control-EMG-Gesture-Classification
 
 This repository provides code and sample EMG data for decoding EMG signals to control a prosthetic arm. It also includes hardware, software, and experimental resources, offering a complete package for replication and further research.  
 
 ---
 
-## Repository Contents
+ Repository Contents
 
 - **STL Files** – for 3D modeling  
 - **3D Printing Settings** – recommended parameters for fabrication  
@@ -13,7 +13,7 @@ This repository provides code and sample EMG data for decoding EMG signals to co
 
 ---
 
-## Main Notebook
+Main Notebook
 
 The primary modeling code is located in the `notebooks` directory:  
 **`feature_extraction_pytorch_training_and_validation.ipynb`**  
@@ -38,9 +38,9 @@ This notebook can be divided into three main sections:
 
 ---
 
-## Cost Breakdown and Specifications
+Cost Breakdown and Specifications
 
 The cost breakdown and detailed part specifications are available in this Google Sheet:  
-👉 [Prosthetic Arm Parts List](https://docs.google.com/spreadsheets/d/1ARazL39SHxkO9HCzjxf5s1OOEaxhFiI-FpY4icmBl84/edit?usp=sharing)  
+[Prosthetic Arm Parts List](https://docs.google.com/spreadsheets/d/1ARazL39SHxkO9HCzjxf5s1OOEaxhFiI-FpY4icmBl84/edit?usp=sharing)  
 
 ---
